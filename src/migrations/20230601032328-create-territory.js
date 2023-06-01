@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Players', key: 'id' }, 
       },
+      game_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Games', key: 'id' }, 
+      },
       troops: {
         type: Sequelize.INTEGER
       },

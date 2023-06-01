@@ -1,16 +1,16 @@
 module.exports = {
   up: (queryInterface) => queryInterface.bulkInsert('Users', [
     {
-      username:'boris',
-      password:'nicolito',
-      mail:'borito@nicolito.cl',
+      username:'drcid',
+      password:'borito',
+      mail:'drcid@uc.cl',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
-      username:'uwu',
+      username:'gvfigueroa',
       password:'uwu123',
-      mail:'jiji@uc.cl',
+      mail:'gvfigueroa@uc.cl',
       createdAt: new Date(),
       updatedAt: new Date(),
     },

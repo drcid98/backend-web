@@ -1,18 +1,16 @@
-import Router from "koa-router";
+const Router = require('koa-router');
 // const characters = require('./routes/characters.js');
-// const users = require('./routes/users.js');
+const users = require('./routes/users.js');
+const start = require('./routes/start.js');
+const draft = require('./routes/draft.js');
+const attack = require('./routes/attack.js');
 
 const router = new Router();
 
-/*
-ruter.get("nombre.ruta", "/ruta", async (ctx) => {
-    ctx.body = blabla;
-    ctx.otro = blabla;
-})
+// router.use('/characters', characters.routes());
+router.use('/users', users.routes());
+router.use('/start', start.routes());
+router.use('/draft', draft.routes());
+router.use('/attack', attack.routes());
 
-*/
-
-// router.use('/charact ers', characters.routes());
-// router.use('/users', users.routes());
-
-export default router;
+module.exports = router;
