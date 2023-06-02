@@ -3,8 +3,8 @@ const Router = require('koa-router');
 const router = new Router();
 
 // GET para iniciar una partida
-router.get("/:id",async(ctx)=>{
-    // Se da game, la lista de territorios y la lista de usuarios
+router.get("/:id", async(ctx)=>{
+    // Se retorna game, la lista de territorios y la lista de usuarios
     try{
         const game = await ctx.orm.Game.findOne({where:{id:ctx.params.id}});
         const territories = await ctx.orm.Territory.findAll({where:{game_id:ctx.params.id}});
