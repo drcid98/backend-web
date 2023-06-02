@@ -18,10 +18,13 @@ module.exports = {
         references: { model: 'Games', key: 'id' }, 
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       color: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true
       },
       troops: {
         type: Sequelize.INTEGER

@@ -32,9 +32,12 @@ router.post("/",async(ctx)=>{
 
             // El atacado pierde la cantidad de tropas que tenia en el territorio
             defending_player.troops -= attacked_territory.troops;
+            defending_player.territories -= 1;
             
             // El territorio pasa a ser del player atacante
             attacked_territory.player_id = attacking_player.id;
+
+            attacking_player.territories += 1;
         }
         else {
             // en caso de que el atacante pierda quedan sus tropas en 1
