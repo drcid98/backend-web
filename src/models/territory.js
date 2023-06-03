@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Player, {
         foreignKey: 'player_id',
       }); 
+      this.belongsTo(models.Game, {
+        foreignKey: 'game_id',
+      }); 
     }
   }
   Territory.init({
     player_id: DataTypes.INTEGER,
+    game_id: DataTypes.INTEGER,
     troops: DataTypes.INTEGER
   }, {
     sequelize,
