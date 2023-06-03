@@ -22,5 +22,8 @@
     "dev": "nodemon src/index.js"
   },
   "author": "grupo-SupremaciaBoris",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.42.0"
+  }
 }
