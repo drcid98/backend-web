@@ -28,9 +28,6 @@ router.post("/",async(ctx)=>{
     // DUDA: Por que el player tiene asociado un territorio en plater.js? no deberia ser solo que el territorio tenga asociado un player? 
     // Esto va a generar problemas porque no se como "quitarle" el territorio al player una vez que lo perdio ya que habiamos quedado en no
     // trabajarlos como una lista o array
-    console.log(random);
-    console.log(attacking_territory.troops);
-    console.log(attacked_territory.troops);
     if (random < proportion && proportion <= 0.5){
       attacking_territory.troops -= 2;
       attacked_territory.troops = 2;
