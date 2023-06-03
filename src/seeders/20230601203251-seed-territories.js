@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface) => queryInterface.bulkInsert('Territories', [
+  up: (queryInterface) => queryInterface.bulkInsert("Territories", [
     {
       player_id: 1,
       game_id: 1,
@@ -15,5 +15,5 @@ module.exports = {
       updatedAt: new Date(),
     },
   ]),
-  down: (queryInterface) => queryInterface.bulkDelete('Territories', null, {}),
+  down: (queryInterface) => queryInterface.bulkDelete("Territories", null, {}),
 };

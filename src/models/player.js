@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Player extends Model {
     /**
@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, {
-        foreignKey: 'user_id',
+        foreignKey: "user_id",
       }); 
       this.belongsTo(models.Game, {
-        foreignKey: 'game_id',
+        foreignKey: "game_id",
       }); 
       this.hasMany(models.Territory, {
-        foreignKey: 'id',
+        foreignKey: "id",
       });
     }
   }
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     territories: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Player',
+    modelName: "Player",
   });
   return Player;
 };

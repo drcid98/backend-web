@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Territories', {
+    await queryInterface.createTable("Territories", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,11 +11,11 @@ module.exports = {
       },
       player_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'Players', key: 'id' }, 
+        references: { model: "Players", key: "id" }, 
       },
       game_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'Games', key: 'id' }, 
+        references: { model: "Games", key: "id" }, 
       },
       troops: {
         type: Sequelize.INTEGER
@@ -30,7 +30,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Territories');
+  async down(queryInterface) {
+    await queryInterface.dropTable("Territories");
   }
 };
