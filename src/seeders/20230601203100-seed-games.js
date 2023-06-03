@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface) => queryInterface.bulkInsert('Games', [
+  up: (queryInterface) => queryInterface.bulkInsert("Games", [
     {
       turn: 1,
       winner: null,
@@ -8,6 +8,6 @@ module.exports = {
       updatedAt: new Date(),
     },
   ]),
-  down: (queryInterface) => queryInterface.bulkDelete('Games', null, {}),
+  down: (queryInterface) => queryInterface.bulkDelete("Games", null, {}),
 
 };

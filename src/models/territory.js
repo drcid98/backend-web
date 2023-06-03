@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Territory extends Model {
     /**
@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Player, {
-        foreignKey: 'player_id',
+        foreignKey: "player_id",
       }); 
       this.belongsTo(models.Game, {
-        foreignKey: 'game_id',
+        foreignKey: "game_id",
       }); 
     }
   }
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     troops: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Territory',
+    modelName: "Territory",
   });
   return Territory;
 };

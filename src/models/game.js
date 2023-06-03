@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Game extends Model {
     /**
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Player, {
-        foreignKey: 'id',
+        foreignKey: "id",
       });
     }
   }
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     stage: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Game',
+    modelName: "Game",
   });
   return Game;
 };
