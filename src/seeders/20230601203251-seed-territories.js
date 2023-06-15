@@ -8,7 +8,7 @@ module.exports = {
       updatedAt: new Date(),
     },
     {
-      player_id: 2,
+      player_id: 1,
       game_id: 1,
       troops: 10,
       createdAt: new Date(),

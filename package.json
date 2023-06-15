@@ -8,7 +8,7 @@
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
     "sequelize": "^6.32.0",
-    "sequelize-cli": "^6.6.0",
+    "sequelize-cli": "^6.6.1",
     "sqlite3": "^5.1.6"
   },
   "name": "grupo-supremaciaboris-backend",
