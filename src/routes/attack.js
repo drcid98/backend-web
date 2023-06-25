@@ -57,7 +57,7 @@ router.post("/",async(ctx)=>{
     // lo mismo: tengo la duda si deberíamos dejar status 201, ya que en teoría no se creó un recurso, sino que se actualizó
     ctx.status = 201;
   } catch(error){
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });
