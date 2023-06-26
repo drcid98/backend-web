@@ -18,4 +18,17 @@ router.post("territories.create", "/", async(ctx)=>{
 });
 
 
+// Mostramos lista de territorios actuales
+router.get("territories.list","/",async(ctx)=>{
+  try{
+    const territories = await ctx.orm.Territory.findAll();
+    ctx.body = territories;
+    ctx.status = 200;
+  } catch(error){
+    ctx.body = { error: error.message };
+    ctx.status = 400;
+  }
+});
+
+
 module.exports = router;

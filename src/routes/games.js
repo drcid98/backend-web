@@ -10,7 +10,17 @@ router.post("games.create","/",async(ctx)=>{
 
     await game.save();
 
-    ctx.body = game;
+    const territories = [];
+
+    for (let i = 0; i < 20; i++) {
+      territories.push(ctx.orm.Territory.create({ player_id: null, game_id: game.id, troops: null }));
+    }
+
+    const createdTerritories = await Promise.all(territories);
+
+
+    ctx.body = {game,
+                createdTerritories};
     ctx.status = 201;
   } catch(error){
     ctx.body = { error: error.message };
