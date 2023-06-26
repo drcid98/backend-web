@@ -17,7 +17,7 @@ router.get("/:id", async(ctx)=>{
     };
     ctx.status = 200;
   } catch(error){
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });

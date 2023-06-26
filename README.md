@@ -36,6 +36,7 @@ cuantas tropas se le asignarán al jugador, pero no se entregan.
     - `player_id`           : El id del jugador que envía la request.
     - `source_territory_id` : El id del territorio de donde "saldrán" las tropas.
     - `dest_territory_id`   : El id del territorio a donde llegarán las tropas.
+    - `moving_troops`       : Cantidad de tropas a mover.
 Este endpoint maneja la lógica de la fase en donde se pueden mover tropas de un territorio dominado a otro.
 - /start/:id    :   Se espera un GET request del jugador cuyo turno va a comenzar (o al comenzar la partida). Este sirve para actualizar al jugador con toda la info del juego, 
 incluido la información de tropas, territorios, etc.
