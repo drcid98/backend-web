@@ -11,6 +11,12 @@ router.post("players.create", "/", async (ctx) => {
 
     const territories = await ctx.orm.Territory.findAll({ where: { game_id: player.game_id, player_id: null } });
 
+    const game = await ctx.orm.Game.findOne({ where: { id: player.game_id} });
+
+    game.num_players += 1;
+
+    await game.save();
+
     var available_troops = player.troops;
 
     var selected_territories = [];
