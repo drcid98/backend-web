@@ -1,5 +1,5 @@
-"use strict";
-/** @type {import('sequelize-cli').Migration} */
+'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Players", {
@@ -20,11 +20,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: "game_name_constraint" // Nombre de la restricción única para el nombre del jugador dentro de un juego
       },
       color: {
         type: Sequelize.INTEGER,
-        unique: true
+        unique: "game_color_constraint" // Nombre de la restricción única para el color del jugador dentro de un juego
       },
       troops: {
         type: Sequelize.INTEGER
@@ -41,8 +41,17 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+
+    // Agregar restricciones de clave externa
+    await queryInterface.addConstraint("Players", {
+      fields: ["game_id", "color"],
+      type: "unique",
+      name: "unique_game_color_constraint" // Nombre de la restricción única para el color del jugador dentro de un juego
+    });
   },
   async down(queryInterface) {
+    // Eliminar restricciones de clave externa
+    await queryInterface.removeConstraint("Players", "unique_game_color_constraint");
     await queryInterface.dropTable("Players");
   }
 };
