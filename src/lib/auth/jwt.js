@@ -17,13 +17,13 @@ async function isUser(ctx, next) {
     ctx.assert(scope.includes('user'), 403, "You're not a user");
 }
 
-async function isAdmin(ctx, next) {
-    await next();
-    var token = ctx.request.header.authorization.split(' ')[1];
-    var scope = getJWTScope(token);
-    ctx.assert(scope.includes('admin'), 403, "You're not a admin");
-}
+// async function isAdmin(ctx, next) {
+//     await next();
+//     var token = ctx.request.header.authorization.split(' ')[1];
+//     var scope = getJWTScope(token);
+//     ctx.assert(scope.includes('admin'), 403, "You're not a admin");
+// }
 
 module.exports = {
-    isUser, isAdmin
+    isUser//, isAdmin
 };

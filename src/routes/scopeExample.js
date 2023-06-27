@@ -10,10 +10,10 @@ router.get('/protecteduser', authUtils.isUser, async (ctx) => {
     }
 });
 
-router.get('/protectedadmin', authUtils.isAdmin, async (ctx) => {
-    ctx.body = {
-        message: "Bienvenido a la ruta protegida con el scope admin!", user: ctx.state.user
-    }
-});
+// router.get('/protectedadmin', authUtils.isAdmin, async (ctx) => {
+//     ctx.body = {
+//         message: "Bienvenido a la ruta protegida con el scope admin!", user: ctx.state.user
+//     }
+// });
 
 module.exports = router;
