@@ -2,19 +2,19 @@ const Router = require("koa-router");
 
 const router = new Router();
 
-router.post("users.create","/",async(ctx)=>{
-  try{
-    const user = await ctx.orm.User.create(ctx.request.body);
+// router.post("users.create","/",async(ctx)=>{
+//   try{
+//     const user = await ctx.orm.User.create(ctx.request.body);
 
-    await user.save();
+//     await user.save();
 
-    ctx.body = user;
-    ctx.status = 201;
-  } catch(error){
-    ctx.body = { error: error.message };
-    ctx.status = 400;
-  }
-});
+//     ctx.body = user;
+//     ctx.status = 201;
+//   } catch(error){
+//     ctx.body = { error: error.message };
+//     ctx.status = 400;
+//   }
+// });
 
 router.get("users.list","/",async(ctx)=>{
   try{
