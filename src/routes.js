@@ -11,7 +11,7 @@ const territories = require("./routes/territories.js");
 const authRoutes = require('./routes/authentication.js')
 const dotenv = require('dotenv');
 const jwtMiddleware = require('koa-jwt')
-// const scopeProtectedRoutes = require('./routes/scopeExample.js')
+const scopeProtectedRoutes = require('./routes/scopeExample.js')
 
 dotenv.config();
 
@@ -35,6 +35,6 @@ router.use(jwtMiddleware( { secret: process.env.JWT_SECRET } ))
 
 router.use('/users', users.routes());
 
-// router.use('/scope-example', scopeProtectedRoutes.routes())
+router.use('/scope-example', scopeProtectedRoutes.routes())
 
 module.exports = router;
