@@ -53,6 +53,18 @@ router.get("games.show","/:id",async(ctx)=>{
   }
 });
 
+// Mostramos partida en juego
+router.get("games.showAvailable","/available/diff",async(ctx)=>{
+  try{
+    const game = await ctx.orm.Game.findOne({where:{winner:null}});
+    ctx.body = game;
+    ctx.status = 200;
+  } catch(error){
+    ctx.body = { error: error.message };
+    ctx.status = 400;
+  }
+});
+
 
 
 module.exports = router;
