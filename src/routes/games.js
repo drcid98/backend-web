@@ -12,7 +12,7 @@ router.post("games.create","/",async(ctx)=>{
 
     const territories = [];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 24; i++) {
       territories.push(ctx.orm.Territory.create({ player_id: null, game_id: game.id, troops: null }));
     }
 

@@ -20,7 +20,7 @@ router.post("players.create", "/", async (ctx) => {
     var available_troops = player.troops;
 
     var selected_territories = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const available_territories = territories.length;
       const min = 0;
       const max = available_territories;
