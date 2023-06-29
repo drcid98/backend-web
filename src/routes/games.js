@@ -75,6 +75,23 @@ router.get("games.showAvailable", "/available/diff", async (ctx) => {
   }
 });
 
+// Mostramos partida en específico
+router.get("games.playeGame","/:id_game/:id_user",async(ctx)=>{
+  try{
+    const game = await ctx.orm.Game.findOne({where:{id:ctx.params.id_game}});
+    const player = await ctx.orm.Player.findOne({where:{game_id:ctx.params.id_game, user_id:ctx.params.id_user}});
+    if (player){
+      ctx.body = {value:true, num_players:game.num_players};
+    }
+    else {
+      ctx.body = {value:false};
+    }
 
+    ctx.status = 200;
+  } catch(error){
+    ctx.body = { error: error.message };
+    ctx.status = 400;
+  }
+});
 
 module.exports = router;

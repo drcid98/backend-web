@@ -12,6 +12,9 @@ router.post("players.create", "/", async (ctx) => {
     const territories = await ctx.orm.Territory.findAll({ where: { game_id: player.game_id, player_id: null } });
 
     const game = await ctx.orm.Game.findOne({ where: { id: player.game_id} });
+    if (game.num_players === 4){
+      throw new Error("La partida está llena. No se pueden agregar más jugadores.");
+    }
 
     game.num_players += 1;
 
@@ -46,6 +49,7 @@ router.post("players.create", "/", async (ctx) => {
       selected_territories,
     };
     ctx.status = 201;
+  
   } catch (error) {
     ctx.body = { error: error.message };
     ctx.status = 400;
