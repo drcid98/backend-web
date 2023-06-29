@@ -53,6 +53,28 @@ router.get("games.show","/:id",async(ctx)=>{
   }
 });
 
+// Mostramos partida en juego
+router.get("games.showAvailable", "/available/diff", async (ctx) => {
+  try {
+    const game = await ctx.orm.Game.findOne({
+      where: { winner: null },
+      order: [['id', 'ASC']], // Ordenar por ID en orden ascendente
+      attributes: ['id'], // Solo seleccionar el campo 'id'
+    });
+    
+    if (game) {
+      ctx.body = { id: game.id }; // Devolver el ID
+      ctx.status = 200;
+    } else {
+      ctx.body = { message: 'No hay partidas disponibles en juego.' };
+      ctx.status = 404;
+    }
+  } catch (error) {
+    ctx.body = { error: error.message };
+    ctx.status = 400;
+  }
+});
+
 
 
 module.exports = router;
