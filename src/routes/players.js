@@ -20,8 +20,9 @@ router.post("players.create", "/", async (ctx) => {
 
     await game.save();
 
-    var available_troops = player.troops;
+    var available_troops = player.troops - 6;
 
+    
     var selected_territories = [];
     for (let i = 0; i < 6; i++) {
       const available_territories = territories.length;
@@ -32,6 +33,7 @@ router.post("players.create", "/", async (ctx) => {
       territories[selected_territory].player_id = player.id;
       selected_territories.push(territories[selected_territory]);
 
+      territories[selected_territory].troops = 1;
       await territories[selected_territory].save(); // Guardar el cambio en la entidad Territory
 
       territories.splice(selected_territory, 1);
