@@ -13,12 +13,22 @@ router.post("/",async(ctx) => {
     const dest_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.dest_territory_id}});
     const moving_troops = await ctx.request.body.moving_troops;
 
+    const game = await ctx.orm.Game.findOne({where:{id:player.game_id}});
+
+    if (source_territory.player_id !== player.id || dest_territory.player_id !== player.id) {
+      throw new Error("No puedes mover tropas entre territorios que no te pertenecen");
+    }
+
+    game.stage = 1;
+    game.turn += 1;
+
     dest_territory.troops += moving_troops;
     source_territory.troops -= moving_troops;
 
     await dest_territory.save();
     await source_territory.save();
     await player.save();
+    await game.save();
 
     ctx.body = {player, dest_territory, source_territory};
 

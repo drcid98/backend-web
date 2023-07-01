@@ -14,6 +14,19 @@ router.post("/",async(ctx)=>{
     const attacking_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.attacking_id}});
     const attacked_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.attacked_id}});
     const defending_player = await ctx.orm.Player.findOne({where:{id:attacked_territory.player_id}});
+
+
+    const game = await ctx.orm.Game.findOne({where:{id:attacking_player.game_id}});
+
+    if (attacking_territory.player_id !== attacking_player.id) {
+      throw new Error("No puedes atacar desde un territorio que no te pertenece");
+    }
+
+    if (attacked_territory.player_id === attacking_player.id) {
+      throw new Error("No puedes atacar un territorio que te pertenece");
+    }
+
+    game.stage += 1;
     // acá podríamos crear una variable global para no tener que volver a calcular la cantidad, pero no sé:(
     // var result = attacked_territory.troops > attacking_territory.troops;
     var proportion = attacking_territory.troops / (attacked_territory.troops + attacking_territory.troops);
@@ -52,6 +65,7 @@ router.post("/",async(ctx)=>{
     await attacked_territory.save();
     await defending_player.save();
     await attacking_player.save();
+    await game.save();
 
     ctx.body = {attacking_player, defending_player, attacked_territory, attacking_territory};
     // lo mismo: tengo la duda si deberíamos dejar status 201, ya que en teoría no se creó un recurso, sino que se actualizó
