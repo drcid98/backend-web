@@ -24,7 +24,7 @@ router.post("/",async(ctx) => {
     }
 
     game.stage = 1;
-    game.turn = (game.turn + 1) % 5;
+    game.turn = ((game.turn + 1) % 4) + 1;
 
     dest_territory.troops += moving_troops;
     source_territory.troops -= moving_troops;
