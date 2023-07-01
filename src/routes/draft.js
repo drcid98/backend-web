@@ -30,6 +30,11 @@ router.post("/",async(ctx) => {
     const player = await ctx.orm.Player.findOne({where:{id:ctx.request.body.player_id}});
     const territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.territory_id}});
     // acá podríamos crear una variable global para no tener que volver a calcular la cantidad, pero no sé:(
+
+    if (territory.player_id != player.id) {
+      throw new Error("No puedes agregar tropas a un territorio que no te pertenece");
+    }
+
     var troops = giveTroops(player.troops, player.territories);
     player.troops += troops;
     territory.troops += troops;
