@@ -15,6 +15,8 @@ router.post("/",async(ctx)=>{
     const attacked_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.attacked_id}});
     const defending_player = await ctx.orm.Player.findOne({where:{id:attacked_territory.player_id}});
 
+    const attacking_color = attacking_player.color;
+
 
     const game = await ctx.orm.Game.findOne({where:{id:attacking_player.game_id}});
 
@@ -53,6 +55,8 @@ router.post("/",async(ctx)=>{
       attacked_territory.player_id = attacking_player.id;
 
       attacking_player.territories += 1;
+
+      attacked_territory.color = attacking_color;
     }
     else {
       // en caso de que el atacante pierda quedan sus tropas en 1
