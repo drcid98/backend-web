@@ -12,7 +12,7 @@ router.post("/",async(ctx) => {
     const source_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.source_territory_id}});
     const dest_territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.dest_territory_id}});
     // const moving_troops = await ctx.request.body.moving_troops;
-    const moving_troops = source_territory.troops / 2;
+    const moving_troops =  ~~(source_territory.troops / 2);
     const game = await ctx.orm.Game.findOne({where:{id:player.game_id}});
 
     if (source_territory.player_id !== player.id || dest_territory.player_id !== player.id) {
