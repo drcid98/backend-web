@@ -18,7 +18,7 @@ router.get("/:id", async (ctx) => {
     ctx.body = {player, troops};
     ctx.status = 200;
   } catch(error) {
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });
@@ -29,19 +29,28 @@ router.post("/",async(ctx) => {
   try {
     const player = await ctx.orm.Player.findOne({where:{id:ctx.request.body.player_id}});
     const territory = await ctx.orm.Territory.findOne({where:{id:ctx.request.body.territory_id}});
+
+    const game = await ctx.orm.Game.findOne({where:{id:player.game_id}});
     // acá podríamos crear una variable global para no tener que volver a calcular la cantidad, pero no sé:(
+
+    if (territory.player_id != player.id) {
+      throw new Error("No puedes agregar tropas a un territorio que no te pertenece");
+    }
+
+    game.stage += 1;
     var troops = giveTroops(player.troops, player.territories);
     player.troops += troops;
     territory.troops += troops;
 
     await player.save();
     await territory.save();
+    await game.save();
 
     ctx.body = {player, territory};
     // acá tengo la duda si deberíamos dejar status 201, ya que en teoría no se creó un recurso, sino que se actualizó
     ctx.status = 201;
   } catch(error) {
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });

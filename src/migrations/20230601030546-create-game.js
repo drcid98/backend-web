@@ -18,6 +18,14 @@ module.exports = {
       stage: {
         type: Sequelize.INTEGER
       },
+      num_players: {
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          max: 4,
+        },
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

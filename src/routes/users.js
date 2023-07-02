@@ -2,19 +2,19 @@ const Router = require("koa-router");
 
 const router = new Router();
 
-router.post("users.create","/",async(ctx)=>{
-  try{
-    const user = await ctx.orm.User.create(ctx.request.body);
+// router.post("users.create","/",async(ctx)=>{
+//   try{
+//     const user = await ctx.orm.User.create(ctx.request.body);
 
-    await user.save();
+//     await user.save();
 
-    ctx.body = user;
-    ctx.status = 201;
-  } catch(error){
-    ctx.body = error;
-    ctx.status = 400;
-  }
-});
+//     ctx.body = user;
+//     ctx.status = 201;
+//   } catch(error){
+//     ctx.body = { error: error.message };
+//     ctx.status = 400;
+//   }
+// });
 
 router.get("users.list","/",async(ctx)=>{
   try{
@@ -22,18 +22,18 @@ router.get("users.list","/",async(ctx)=>{
     ctx.body = users;
     ctx.status = 200;
   } catch(error){
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });
 
-router.get("user.show","/:id",async(ctx)=>{
+router.get("users.show","/:id",async(ctx)=>{
   try{
     const user = await ctx.orm.User.findOne({where:{id:ctx.params.id}});
     ctx.body = user;
     ctx.status = 200;
   } catch(error){
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });
