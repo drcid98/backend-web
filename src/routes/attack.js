@@ -6,6 +6,17 @@ const router = new Router();
 // en attack, a diferencia de draft se hace primero el post para especificar el territorio a atacar
 // y luego el get para obtener los resultados
 
+function winner(territories){
+  const playerId = territories[0].player_id; 
+
+  for (let i = 0; i < territories.lenght; i++){
+    if (territories[i].player_id !== playerId) {
+      return false; 
+    }
+  }
+}
+
+
 
 router.post("/",async(ctx)=>{
   // el jugador en turno envía su jugada.
@@ -19,6 +30,8 @@ router.post("/",async(ctx)=>{
 
 
     const game = await ctx.orm.Game.findOne({where:{id:attacking_player.game_id}});
+
+    const all_territories = await ctx.orm.Territory.findAll({where:{game_id:game.id}});
 
     if (attacking_territory.player_id !== attacking_player.id) {
       throw new Error("No puedes atacar desde un territorio que no te pertenece");
@@ -64,6 +77,14 @@ router.post("/",async(ctx)=>{
       attacking_territory.troops = 1;
 
     }
+
+    const finish = winner(all_territories);
+    if (finish){
+      game.winner = ctx.request.body.player_id;
+    }
+
+
+
 
     await attacking_territory.save();
     await attacked_territory.save();
