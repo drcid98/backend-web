@@ -23,7 +23,10 @@
   "repository": "https://github.com/IIC2513/grupo-SupremaciaBoris-backend.git",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "deploy": "node start.js",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:reset": "run-s db:drop db:create"
   },
   "author": "grupo-SupremaciaBoris",
   "license": "ISC",
