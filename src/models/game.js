@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   Game.init({
     turn: DataTypes.INTEGER,
     winner: DataTypes.INTEGER,
-    stage: DataTypes.INTEGER
+    stage: DataTypes.INTEGER,
+    num_players: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: "Game",
